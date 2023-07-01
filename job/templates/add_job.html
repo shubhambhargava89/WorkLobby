@@ -1,0 +1,111 @@
+{% load static %}
+{% block body %}
+
+{% include 'recruiter_navigation.html'%}
+
+<script>
+    function checkpass()
+    {
+    if(document.signup.pwd.value!=document.signup.cpwd.value)
+    {
+    alert('Password and Confirm Password field does not match');
+    document.signup.cpwd.focus();
+    return false;
+    }
+    return true;
+    }
+</script>
+
+<marquee style="font-family: 'Monotype Corsiva'; font-size:25px; color:darkcolor; background-color:lightblue; font-weight:bold; margin-top:1%">
+    Add Job Details
+</marquee>
+
+<hr>
+<form class="container mt-5" onsubmit="return checkpass();" name="signup" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<!--  1st Row  -->
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label><b> Job Title </b></label>
+            <input type="text" class="form-control" name="jobtitle" placeholder="Enter Job Title" required>
+        </div>
+    </div>
+
+    <!--  2nd Row  -->
+    <div class="form-row">
+        <div class="form-group col-md-6">
+        <label><b> Start Date </b></label>
+            <input type="date" class="form-control" name="startdate" required>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label><b> End Date </b></label>
+            <input type="date" class="form-control" name="enddate" required>
+        </div>
+    </div>
+
+<!--  3rd Row  -->
+    <div class="form-row">
+        <div class="form-group col-md-6">
+        <label><b> Salary (Per Month) </b></label>
+            <input type="Text" class="form-control" name="salary" required>
+        </div>
+
+        <div class="form-group col-md-6">
+            <label><b> Company Logo </b></label>
+            <input type="File" class="form-control" name="logo" required accept="image/*">
+        </div>
+    </div>
+
+
+<!--  4th Row  -->
+    <div class="form-row">
+        <div class="form-group col-md-6">
+        <label><b> Experience (In Years) </b></label>
+            <input type="number" class="form-control" name="experience" required>
+        </div>
+
+        <div class="form-group col-md-6">
+        <label><b> Company Location </b></label>
+            <input type="text" class="form-control" name="location" required>
+        </div>
+    </div>
+
+     <!--  5th Row  -->
+<div class="form-row">
+        <div class="form-group col-md-12">
+        <label><b> Skills </b></label>
+            <input type="text" class="form-control" name="skills" placeholder="Skills Required" required>
+        </div>
+    </div>
+
+    <!--  6th Row  -->
+<div class="form-row">
+        <div class="form-group col-md-12">
+        <label><b> Description </b></label>
+            <textarea class="form-control" name="description" placeholder="Enter Job Description" required></textarea>
+        </div>
+    </div>
+<input type="submit" value="Submit" class="btn btn-secondary my-3" style="width:200px">
+</form>
+
+
+
+
+
+{% include 'footer.html'%}
+
+{% ifequal error "no" %}
+<script>
+    alert("Job Details has been Added Successful");
+    window.location = ('{% url 'job_list' %}')
+</script>
+{% endifequal %}
+
+{% ifequal error "yes" %}
+<script>
+    alert("Something went wrong, Try Again...");
+</script>
+{% endifequal %}
+
+{% endblock body%}
