@@ -8,3 +8,9 @@ admin.site.register(Recruiter)
 admin.site.register(Job)
 
 admin.site.register(Apply)
+
+admin.site.register(Ticket)
+
+admin.site.register(Feedback)
+
+

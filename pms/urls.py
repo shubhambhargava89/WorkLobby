@@ -55,4 +55,13 @@ urlpatterns = [
     path('contact',contact,name="contact"),
 path('admin_job', admin_job, name="admin_job"),
 path('admin_job_detail/<int:pid>', admin_job_detail, name="admin_job_detail"),
+    path('ticket_list',ticket_list,name="ticket_list"),
+    path('recruiter_ticket',recruiter_ticket,name="recruiter_ticket"),
+    path('student_ticket',student_ticket,name="student_ticket"),
+                  path('feedback_list', feedback_list, name="feedback_list"),
+                  path('recruiter_feedback', recruiter_feedback, name="recruiter_feedback"),
+                  path('student_feedback', student_feedback, name="student_feedback"),
+
+
+
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

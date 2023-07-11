@@ -1,0 +1,55 @@
+{% load static %}
+{% block body%}
+{% include 'recruiter_navigation.html'%}
+
+<marquee style="font-family: 'Monotype Corsiva'; font-size:25px; color:darkcolor; background-color:lightblue; font-weight:bold; margin-top:1%">
+    Recruiter Raise Ticket
+</marquee>
+<hr>
+
+
+<form class="container mt-5"  method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+<!--  1st Row  -->
+    <div class="form-row">
+        <div class="form-group col-md-12">
+            <label><b> Ticket Title </b></label>
+            <input type="text" class="form-control" name="title" placeholder="Enter Ticket Title" required>
+        </div>
+    </div>
+
+    <!--  2nd Row  -->
+    <div class="form-row">
+        <div class="form-group col-md-12">
+        <label><b> Ticket Subject </b></label>
+            <input type="text" class="form-control" name="subject" placeholder="Enter Ticket Subject" required>
+        </div>
+    </div>
+
+<!--  3rd Row  -->
+    <div class="form-row">
+        <div class="form-group col-md-12">
+        <label><b> Description </b></label>
+            <input type="text" class="form-control" name="description" placeholder="Enter Description" required>
+        </div>
+    </div>
+
+<input type="submit" value="Submit" class="btn btn-secondary my-3" style="width:200px">
+</form>
+<hr>
+{% include 'footer.html'%}
+
+{% if error == "no" %}
+<script>
+    alert("Raise Ticket Successful");
+    window.location = ('{% url 'recruiter_home' %}')
+</script>
+{% endif %}
+
+{% if error == "yes" %}
+<script>
+    alert("Something went wrong, Try Again...");
+</script>
+{% endif %}
+
+{% endblock body%}

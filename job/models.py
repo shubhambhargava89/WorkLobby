@@ -44,6 +44,16 @@ class Job(models.Model):
     def __str__(self):
         return self.title
 
+class Ticket(models.Model):
+    title = models.CharField(max_length=100)
+    subject = models.CharField(max_length=50)
+    description = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at = models.DateField()
+
+    def __str__(self):
+        return self.user.username
+
 
 class Apply(models.Model):
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
@@ -53,3 +63,13 @@ class Apply(models.Model):
 
     def __str__(self):
         return self.id
+
+class Feedback(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=100)
+    rating = models.IntegerField()
+    feedback = models.TextField()
+    created_at = models.DateField()
+
+    def __str__(self):
+        return self.user.username

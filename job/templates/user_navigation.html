@@ -26,6 +26,22 @@
     color:yellow !important;
     }
 
+    .nav-dropdown{
+    color:white !important;
+    margin-right:4px;
+    }
+
+    .nav-dropdown:hover{
+    color:yellow !important;
+    font_weight: bold;
+    background-color: red;
+    border-radius:10px;
+    }
+
+     .navbar-brand:hover{
+    color:yellow !important;
+    }
+
 </style>
 
 
@@ -68,6 +84,13 @@
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{% url 'user_joblist' %}" ><i class="fa fa-users mr-1"></i>Job List</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'student_feedback' %}" ><i class="fa fa-rss mr-1"></i>Feedback</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'student_ticket' %}" ><i class="fa fa-ticket mr-1"></i>Raise Ticket</a>
+    </li>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{% url 'change_passworduser' %}" ><i class="fa fa-user-circle mr-1"></i>Change Password</a>

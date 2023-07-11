@@ -1,14 +1,14 @@
 {% load static %}
 {% block body %}
 
-{% include 'user_navigation.html'%}
+{% include 'admin_navigation.html'%}
 <style>
     tr{
     text-align: center;
     }
 </style>
 <marquee style="font-family: 'Monotype Corsiva'; font-size:25px; color:darkcolor; background-color:lightblue; font-weight:bold; margin-top:1%">
-    Latest Job list
+    Feedback List
 </marquee>
 
 <hr>
@@ -17,30 +17,23 @@
     <thead>
     <tr style="background-color: #000080; color:white">
         <th>Sr. No.</th>
-        <th>Company Name</th>
-        <th>Job Title</th>
-        <th>Location</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>Action</th>
+        <th>User</th>
+        <th>Title</th>
+        <th>Rating</th>
+        <th>Feedback</th>
+        <th>Creation Date</th>
     </tr>
     </thead>
 
     <tbody>
-    {% for i in job %}
+    {% for i in data %}
     <tr style="background-color: #DEB887 ">
         <td>{{forloop.counter}}</td>
-        <td>{{i.recruiter.company}}</td>
+        <td>{{i.user.username}}</td>
         <td>{{i.title}}</td>
-        <td>{{i.location}}</td>
-        <td>{{i.start_date}}</td>
-        <td>{{i.end_date}}</td>
-        {% if i.id in li %}
-        <td>Applied</td>
-        {% else %}
-        <td><a href="#" class="btn btn-success btn-sm">Apply</a>
-        {% endif %}
-        </td>
+        <td>{{i.rating}}</td>
+        <td>{{i.feedback}}</td>
+        <td>{{i.created_at}}</td>
     </tr>
     {% endfor %}
     </tbody>

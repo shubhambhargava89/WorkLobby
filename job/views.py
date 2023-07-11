@@ -502,3 +502,85 @@ def applyforjob(request, pid):
 
 def contact(request):
     return render(request,'contact.html')
+
+def student_ticket(request):
+    if not request.user.is_authenticated:
+        return redirect('user_login')
+    error = ""
+    if request.method == 'POST':
+        t = request.POST['title']
+        s = request.POST['subject']
+        d = request.POST['description']
+        try:
+            user = User.objects.get(id=request.user.id)
+            Ticket.objects.create(title=t, subject=s, description=d, user=user, created_at=date.today())
+            error = "no"
+        except:
+            error = "yes"
+    d = {'error': error}
+    return render(request,'student_ticket.html',d)
+
+def recruiter_ticket(request):
+    if not request.user.is_authenticated:
+        return redirect('recruiter_login')
+    error = ""
+    if request.method == 'POST':
+        t = request.POST['title']
+        s = request.POST['subject']
+        d = request.POST['description']
+        try:
+            user = User.objects.get(id=request.user.id)
+            Ticket.objects.create(title=t, subject=s, description=d, user=user, created_at=date.today())
+            error = "no"
+        except:
+            error = "yes"
+    d = {'error': error}
+    return render(request,'recruiter_ticket.html',d)
+
+def ticket_list(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    data = Ticket.objects.all()
+    d = {'data': data}
+    return render(request,'ticket_list.html',d)
+
+def feedback_list(request):
+    if not request.user.is_authenticated:
+        return redirect('admin_login')
+    data = Feedback.objects.all()
+    d = {'data': data}
+    return render(request,'feedback_list.html',d)
+
+def recruiter_feedback(request):
+    if not request.user.is_authenticated:
+        return redirect('recruiter_login')
+    error = ""
+    if request.method == 'POST':
+        t = request.POST['title']
+        s = request.POST['rating']
+        d = request.POST['feedback']
+        try:
+            user = User.objects.get(id=request.user.id)
+            Feedback.objects.create(user=user, title=t, rating=s, feedback=d, created_at=date.today())
+            error = "no"
+        except:
+            error = "yes"
+    d = {'error': error}
+    return render(request,'recruiter_feedback.html',d)
+
+def student_feedback(request):
+    if not request.user.is_authenticated:
+        return redirect('user_login')
+    error = ""
+    if request.method == 'POST':
+        t = request.POST['title']
+        s = request.POST['rating']
+        d = request.POST['feedback']
+        try:
+            user = User.objects.get(id=request.user.id)
+            Feedback.objects.create(user=user, title=t, rating=s, feedback=d, created_at=date.today())
+            error = "no"
+        except:
+            error = "yes"
+    d = {'error': error}
+    return render(request,'student_feedback.html',d)
