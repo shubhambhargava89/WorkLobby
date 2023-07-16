@@ -7,10 +7,10 @@ admin.site.register(Recruiter)
 
 admin.site.register(Job)
 
-admin.site.register(Apply)
+admin.site.register(ApplyJob)
 
 admin.site.register(Ticket)
 
 admin.site.register(Feedback)
 
-
+admin.site.register(Notification)

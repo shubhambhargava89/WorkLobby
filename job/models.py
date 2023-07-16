@@ -55,7 +55,7 @@ class Ticket(models.Model):
         return self.user.username
 
 
-class Apply(models.Model):
+class ApplyJob(models.Model):
     job = models.ForeignKey(Job, on_delete=models.CASCADE)
     student = models.ForeignKey(StudentUser, on_delete=models.CASCADE)
     resume = models.FileField(null=True)
@@ -70,6 +70,15 @@ class Feedback(models.Model):
     rating = models.IntegerField()
     feedback = models.TextField()
     created_at = models.DateField()
+
+    def __str__(self):
+        return self.user.username
+
+class Notification(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    message = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username
